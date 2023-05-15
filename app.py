@@ -3,4 +3,4 @@ import pandas as pd
 
 
 df = pd.read_csv('primers.csv')
-st.write(df)
+st.dataframe(df)
