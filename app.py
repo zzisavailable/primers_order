@@ -9,7 +9,7 @@ st.dataframe(df)
 to_order_df = pd.DataFrame(columns=df.columns)
 
 name_list = df.iloc[:, 0].tolist()
-selected_name = st.sidebar.selectbox(name_list)
+selected_name = st.sidebar.selectbox('Select a primer name:', options=name_list)
 
 selected_row = df.loc[df['Name'] == selected_name]
 to_order_df.append(selected_row)
