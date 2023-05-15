@@ -6,7 +6,7 @@ import pandas as pd
 df = pd.read_csv('primers.csv')
 st.dataframe(df)
 
-to_order_df = pd.DataFrame({})
+to_order_df = pd.DataFrame(columns=df.columns)
 
 name_list = df.iloc[:, 0].tolist()
 selected_name = st.sidebar.selectbox('Select a primer name:', options=name_list)
