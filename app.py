@@ -1,10 +1,10 @@
 import streamlit as st
 import pandas as pd
-from st_aggrid import AgGrid
+# from st_aggrid import AgGrid
 
 
 df = pd.read_csv('primers.csv')
-AgGrid(df)
+st.dataframe(df)
 
 to_order_df = pd.DataFrame(columns=df.columns)
 
