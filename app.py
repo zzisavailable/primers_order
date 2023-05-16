@@ -1,20 +1,28 @@
+
+要在Streamlit的DataFrame或表格中添加额外的列，并为每行添加一个按钮，可以使用Streamlit的st.table()函数和st.button()函数的组合。
+
+下面是一个示例代码，展示如何在Streamlit中实现这个功能：
+
+python
+Copy code
 import streamlit as st
 import pandas as pd
-# from st_aggrid import AgGrid
 
+# 创建一个示例DataFrame
+df = pd.DataFrame({'Name': ['Alice', 'Bob', 'Charlie'],
+                   'Age': [25, 30, 35]})
 
-df = pd.read_csv('primers.csv')
-st.dataframe(df)
+# 添加额外的列
+df['Action'] = ""
 
-to_order_df = pd.DataFrame(columns=df.columns)
+# 显示DataFrame和按钮
+for index, row in df.iterrows():
+    # 添加按钮到每一行
+    button_clicked = st.button("Action", key=index)
+    if button_clicked:
+        # 在按钮点击时执行的操作
+        st.write("Button clicked for row:", index)
 
-name_list = df.iloc[:, 0].tolist()
-selected_name = st.sidebar.selectbox('Select a primer name:', options=name_list)
-
-selected_row = df.loc[df['Name'] == selected_name]
-
-st.write(selected_row)
-to_order_df.loc[len(to_order_df)] = {'Name': 'test'}
-
-st.write(to_order_df)
+# 显示DataFrame
+st.table(df)
 
