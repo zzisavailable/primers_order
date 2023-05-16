@@ -1,10 +1,5 @@
 
-要在Streamlit的DataFrame或表格中添加额外的列，并为每行添加一个按钮，可以使用Streamlit的st.table()函数和st.button()函数的组合。
 
-下面是一个示例代码，展示如何在Streamlit中实现这个功能：
-
-python
-Copy code
 import streamlit as st
 import pandas as pd
 
