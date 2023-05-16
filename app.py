@@ -10,7 +10,7 @@ df = pd.DataFrame({
 
 # add checkboxes and buttons to the dataframe
 df["Select"] = [st.checkbox("", False, key=i) for i in range(len(df))]
-df["Button"] = [st.button("Edit", key=i) for i in range(len(df))]
+# df["Button"] = [st.button("Edit", key=i) for i in range(len(df))]
 
 # display the dataframe with checkboxes and buttons
 st.dataframe(df)
