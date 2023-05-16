@@ -6,7 +6,7 @@ from st_aggrid import AgGrid
 df = pd.read_csv('primers.csv')
 AgGrid(df)
 
-to_order_df = pd.DataFrame(columns=df.co)
+to_order_df = pd.DataFrame(columns=df.columns)
 
 name_list = df.iloc[:, 0].tolist()
 selected_name = st.sidebar.selectbox('Select a primer name:', options=name_list)
