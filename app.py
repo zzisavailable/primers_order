@@ -1,23 +1,20 @@
-
-
 import streamlit as st
 import pandas as pd
+from st_aggrid import AgGrid
 
-# 创建一个示例DataFrame
-df = pd.DataFrame({'Name': ['Alice', 'Bob', 'Charlie'],
-                   'Age': [25, 30, 35]})
 
-# 添加额外的列
-df['Action'] = ""
+df = pd.read_csv('primers.csv')
+AgGrid(df)
 
-# 显示DataFrame和按钮
-for index, row in df.iterrows():
-    # 添加按钮到每一行
-    button_clicked = st.button("Action", key=index)
-    if button_clicked:
-        # 在按钮点击时执行的操作
-        st.write("Button clicked for row:", index)
+to_order_df = pd.DataFrame(columns=df.co)
 
-# 显示DataFrame
-st.table(df)
+name_list = df.iloc[:, 0].tolist()
+selected_name = st.sidebar.selectbox('Select a primer name:', options=name_list)
+
+selected_row = df.loc[df['Name'] == selected_name]
+
+st.write(selected_row)
+to_order_df.loc[len(to_order_df)] = {'Name': 'test'}
+
+st.write(to_order_df)
 
