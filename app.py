@@ -10,9 +10,9 @@ gd = GridOptionsBuilder.from_dataframe(df)
 gd.configure_selection(selection_mode='multiple', use_checkbox=True)
 gridoptions = gd.build()
 
-grid_table = AgGrid(df, height=500, gridOptions=gridoptions,
+grid_table = AgGrid(df, height=800, gridOptions=gridoptions,
                     update_mode=GridUpdateMode.SELECTION_CHANGED)
 
 st.write('To order')
 selected_row = grid_table["selected_rows"]
-st.dataframe(selected_row)
+st.sidebar.dataframe(selected_row)
