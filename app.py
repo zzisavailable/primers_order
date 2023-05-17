@@ -7,10 +7,11 @@ from st_aggrid.grid_options_builder import GridOptionsBuilder
 
 def convert_df(df):
     # IMPORTANT: Cache the conversion to prevent computation on every rerun
-    return df.to_csv().encode('utf-8')
+    return df.to_csv(index=False).encode('utf-8')
 
 
 df = pd.read_csv('primers.csv')
+st.title('Primers')
 gd = GridOptionsBuilder.from_dataframe(df)
 gd.configure_selection(selection_mode='multiple', use_checkbox=True)
 gridoptions = gd.build()
@@ -18,7 +19,7 @@ gridoptions = gd.build()
 grid_table = AgGrid(df, height=800, gridOptions=gridoptions,
                     update_mode=GridUpdateMode.SELECTION_CHANGED)
 
-st.write('To order')
+st.sidebar.header('To order')
 selected_row = pd.DataFrame(grid_table["selected_rows"])
 
 if len(selected_row) > 0:
