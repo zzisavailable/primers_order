@@ -17,5 +17,6 @@ st.write('To order')
 selected_row = grid_table["selected_rows"]
 if len(selected_row) > 0:
     st.sidebar.write(len(selected_row))
+    st.sidebar.write(selected_row.columns)
     st.sidebar.dataframe(selected_row)
     st.sidebar.button(label='Download')
