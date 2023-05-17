@@ -16,7 +16,7 @@ gd = GridOptionsBuilder.from_dataframe(df)
 gd.configure_selection(selection_mode='multiple', use_checkbox=True)
 gridoptions = gd.build()
 
-grid_table = AgGrid(df, height=1200, gridOptions=gridoptions,
+grid_table = AgGrid(df, gridOptions=gridoptions,
                     update_mode=GridUpdateMode.SELECTION_CHANGED)
 
 st.sidebar.header('Order list')
