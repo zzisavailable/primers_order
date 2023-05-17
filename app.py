@@ -5,6 +5,11 @@ from st_aggrid import AgGrid, GridUpdateMode
 from st_aggrid.grid_options_builder import GridOptionsBuilder
 
 
+def convert_df(df):
+    # IMPORTANT: Cache the conversion to prevent computation on every rerun
+    return df.to_csv().encode('utf-8')
+
+
 df = pd.read_csv('primers.csv')
 gd = GridOptionsBuilder.from_dataframe(df)
 gd.configure_selection(selection_mode='multiple', use_checkbox=True)
@@ -23,6 +28,6 @@ if len(selected_row) > 0:
     to_be_downloaded = selected_row.copy()
     to_be_downloaded['scale'] = '25nm'
     to_be_downloaded['Purification'] = 'STD'
-    csv = to_be_downloaded.to_csv(f'idt_order_{datetime.date.today()}.csv', index=False)
+    csv = convert_df(to_be_downloaded)
     
     st.download_button(label="Download", data=csv, file_name='idt_order_{dt}.csv'.format(dt=datetime.date.today()), mime='text/csv')
