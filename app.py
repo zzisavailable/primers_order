@@ -15,4 +15,5 @@ grid_table = AgGrid(df, height=800, gridOptions=gridoptions,
 
 st.write('To order')
 selected_row = grid_table["selected_rows"]
-st.sidebar.dataframe(selected_row)
+if len(selected_row) > 0:
+    st.sidebar.dataframe(selected_row)
