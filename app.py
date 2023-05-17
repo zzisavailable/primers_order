@@ -14,8 +14,7 @@ grid_table = AgGrid(df, height=800, gridOptions=gridoptions,
                     update_mode=GridUpdateMode.SELECTION_CHANGED)
 
 st.write('To order')
-selected_row = pd.DataFrame(grid_table["selected_rows"])#.drop("_selectedRowNodeInfo")
-st.sidebar.write(selected_row.columns)
+selected_row = pd.DataFrame(grid_table["selected_rows"]).drop("_selectedRowNodeInfo", axis=1)
 
 if len(selected_row) > 0:
 
@@ -26,4 +25,4 @@ if len(selected_row) > 0:
     to_be_downloaded['Purification'] = 'STD'
     csv = to_be_downloaded.to_csv(f'idt_order_{datetime.date.today()}.csv', index=False)
     
-    st.download_button(label="Download", data=csv, file_name=f'idt_order_{datetime.date.today()}.csv', mime='text/csv')
+    st.download_button(label="Download", data=csv, file_name='idt_order_{dt}.csv'.format(dt=datetime.date.today()), mime='text/csv')
