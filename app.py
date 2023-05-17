@@ -19,7 +19,20 @@ gridoptions = gd.build()
 grid_table = AgGrid(df, height=800, gridOptions=gridoptions,
                     update_mode=GridUpdateMode.SELECTION_CHANGED)
 
-st.sidebar.header('To order')
+    
+st.sidebar.header('Order list')
+
+new_name = st.text_input(label='Name: ')
+new_seq = st.text_input(label='Sequence: ')
+if st.button('Add'):
+    if new_name == '' or new_seq == '':
+        st.info('Please enter the name and sequence first.')
+    else:
+        new_item = {'Name': new_name, 'Sequence': new_seq}
+        df.loc[len(df)] = new_item
+        with open('primers.csv', 'w', encoding='utf-8') as f:
+            f.write(f'\n{new_name}, {new_seq}')
+
 selected_row = pd.DataFrame(grid_table["selected_rows"])
 
 if len(selected_row) > 0:
