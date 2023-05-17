@@ -14,7 +14,8 @@ grid_table = AgGrid(df, height=800, gridOptions=gridoptions,
                     update_mode=GridUpdateMode.SELECTION_CHANGED)
 
 st.write('To order')
-selected_row = pd.DataFrame(grid_table["selected_rows"]).drop("_selectedRowNodeInfo")
+selected_row = pd.DataFrame(grid_table["selected_rows"])#.drop("_selectedRowNodeInfo")
+st.sidebar.write(selected_row.columns)
 
 if len(selected_row) > 0:
 
