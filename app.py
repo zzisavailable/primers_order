@@ -15,8 +15,11 @@ grid_table = AgGrid(df, height=800, gridOptions=gridoptions,
 
 st.write('To order')
 selected_row = grid_table["selected_rows"]
+selected_row_list = []
+for i in selected_row:
+    i.pop("_selectedRowNodeInfo")
+    selected_row_list.append(i)
 if len(selected_row) > 0:
-    st.sidebar.write(len(selected_row))
-    st.sidebar.write(selected_row)
-    st.sidebar.dataframe(selected_row)
+
+    st.sidebar.dataframe(selected_row_list)
     st.sidebar.button(label='Download')
