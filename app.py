@@ -67,5 +67,5 @@ if len(selected_row) > 0:
     csv = convert_df(to_be_downloaded)
     
     st.sidebar.download_button(label="Download", data=csv, file_name='idt_order_{dt}.csv'.format(dt=datetime.date.today()), mime='text/csv')
-    if st.button("Send Email"):
-        send_email(csv)
+    if st.sidebar.button("Send Email"):
+        send_email(str(csv))
