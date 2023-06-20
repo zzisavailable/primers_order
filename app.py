@@ -41,7 +41,7 @@ def send_email(message):
         server.sendmail(sender_email, recipient_email, email.as_string())
 
     # 显示成功发送邮件的消息
-    st.success("Email sent successfully!")
+    st.sidebar.success("Email sent successfully!")
 
 st.set_page_config(page_title="Primers order")
 df = pd.read_csv('primers.csv')
