@@ -32,7 +32,9 @@ def send_email(message):
     email["Subject"] = subject
 
     # 添加邮件内容
-    email.attach(MIMEText(message, "plain"))
+    attachment = MIMEText(message, "csv")
+    attachment.add_header("Content-Disposition", "attachment", filename="data.csv")
+    email.attach(attachment)
 
     # 连接SMTP服务器并发送邮件
     with smtplib.SMTP(smtp_server, smtp_port) as server:
@@ -68,4 +70,4 @@ if len(selected_row) > 0:
     
     st.sidebar.download_button(label="Download", data=csv, file_name='idt_order_{dt}.csv'.format(dt=datetime.date.today()), mime='text/csv')
     if st.sidebar.button("Send Email"):
-        send_email(str(csv))
+        send_email(csv)
