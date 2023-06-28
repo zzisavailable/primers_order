@@ -21,7 +21,7 @@ def send_email(message):
     smtp_port = 587
 
     # 配置收件人邮箱和邮件内容
-    recipient_email = "qdong8@wisc.edu,dongqiping@gmail.com"#,zzhang2223@wisc.edu"
+    recipient_email = "qdong8@wisc.edu,dongqiping@gmail.com,dongqiping@outlook.com"#,zzhang2223@wisc.edu"
     subject = "Primers order"
     message = message
 
